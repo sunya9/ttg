@@ -11,9 +11,9 @@
     <h1><a href="/" v-link="'/'">TwiTokenGetter</a></h1>
     <p>TwiTokenGetterはTwitterのアクセストークン類を取得できるツールです。</p>
     <ol class="progress">
-      <li :class="isCurrent('/input-key')"><a v-link="'/input-key'">CK/CS入力</a></li>
-      <li v-show="type === 'pin'":class="isCurrent('/authorize')"><a v-link="'/authorize'">PIN入力</a></li>
-      <li :class="isCurrent('/authorized')"><a v-link="'/authorized'">認証完了</a></li>
+      <li :class="isCurrent('input-key')"><a v-link="'/input-key'">CK/CS入力</a></li>
+      <li v-show="type === 'pin'":class="isCurrent('authorize')"><a v-link="'/authorize'">PIN入力</a></li>
+      <li :class="isCurrent('authorized')"><a v-link="'/authorized'">認証完了</a></li>
     </ol>
     <router-view :consumer-key.sync="consumerKey" :consumer-secret.sync="consumerSecret" :access-token.sync="accessToken" :access-token-secret.sync="accessTokenSecret" :type.sync="type"></router-view>
     <hr>

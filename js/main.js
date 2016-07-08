@@ -12,13 +12,16 @@ Vue.partial('progress', `<span class="spinner"><img src="${ring}" width="20" hei
 
 const router = new VueRouter().map({
     '/input-key': {
-      component: InputKey
+      component: InputKey,
+      name: 'input-key'
     },
     '/authorize': {
-      component: Authorize
+      component: Authorize,
+      name: 'authorize'
     },
     '/authorized': {
-      component: Authorized
+      component: Authorized,
+      name: 'authorized'
     }
   }).redirect({
     '/': '/input-key',
@@ -36,8 +39,8 @@ const App = Vue.extend({
     }
   },
   methods: {
-    isCurrent(path) {
-      return this.$route.path === path ? 'current' : ''
+    isCurrent(name) {
+      return this.$route.name === name ? 'current' : ''
     }
   }
 })
