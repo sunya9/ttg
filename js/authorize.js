@@ -22,9 +22,10 @@ const template = `
     </form>
   </div>
   <div v-else>
-    <p>
+    <p v-show="!error">
       <partial name="progress" />
     </p>
+    <p v-else>エラーが発生しました。<a v-link="'/input-key'">1.に戻って</a>Consumer Key, Consumer Secret, 認証タイプを確認してください。</p>
   </div>
 </div>
 `
@@ -37,18 +38,21 @@ module.exports = Vue.extend({
       showForm: false,
       promise: null,
       authorizationURL: null,
-      pin: null
+      pin: null,
+      error: null
     }
   },
   created() {
     if(!this.checkKey()) return
-    this.generateOAuthURL().then(url => {
+    this.generateOAuthURL()
+      .then(url => {
         if(this.type === 'callback') {
           location.href = url
         } else {
           this.authorizationURL = url
         }
       })
+      .catch(err => this.error = err)
   },
   computed: {
     disableButton() {
@@ -70,6 +74,10 @@ module.exports = Vue.extend({
           'X-Requested-With': 'fetch'
         }
       })
+        .then(res => {
+          if(!res.ok) throw Error(res.responseText)
+          return res
+        })
         .then(body => body.json())
         .then(data => {
           const {
@@ -81,6 +89,7 @@ module.exports = Vue.extend({
           this.$router.go('/authorized')
           this.promise = null
         })
+        .catch(err => this.error = err)
         .then(() => this.generateOAuthURL())
 
     }

@@ -13,8 +13,14 @@ function generateURL(consumer_key, consumer_secret, type) {
     credentials: 'include'
   })
     .then(setCookie)
+    .then(errorCheck)
     .then(res => res.json())
     .then(res => res.url)
+}
+
+function errorCheck(res) {
+  if(!res.ok) throw Error(res.statusText)
+  return res
 }
 
 function setCookie(res) {
