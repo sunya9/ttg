@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=0.25">
+  <title>TwiTokenGetter</title>
+  <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+  <div class="container" id="app">
+    <h1><a href="/" v-link="'/'">TwiTokenGetter</a></h1>
+    <p>TwiTokenGetterはTwitterのアクセストークン類を取得できるツールです。</p>
+    <ol class="progress">
+      <li :class="isCurrent('/input-key')"><a v-link="'/input-key'">CK/CS入力</a></li>
+      <li v-show="type === 'pin'":class="isCurrent('/authorize')"><a v-link="'/authorize'">PIN入力</a></li>
+      <li :class="isCurrent('/authorized')"><a v-link="'/authorized'">認証完了</a></li>
+    </ol>
+    <router-view :consumer-key.sync="consumerKey" :consumer-secret.sync="consumerSecret" :access-token.sync="accessToken" :access-token-secret.sync="accessTokenSecret" :type.sync="type"></router-view>
+    <hr>
+    <p>Pesented by <a href="https://unsweets.net">&lt;unsweets/&gt;</a></p>
+  </div>
+  <script src="js/main.js"></script>
+</body>
+</html>
