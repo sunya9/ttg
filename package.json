@@ -10,6 +10,7 @@
     "start": "node .",
     "build": "webpack"
   },
+  "private": true,
   "keywords": [],
   "author": "_X_y_z_",
   "license": "MIT",
