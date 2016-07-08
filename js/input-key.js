@@ -26,13 +26,6 @@ module.exports = Vue.extend({
       return this.type === 'callback' ? '認証する' : '認証URL生成'
     }
   },
-  created() {
-    this.consumerKey = 'otEJBmSvb5rV4syvq1Ivw'
-    this.consumerSecret = 'vQIiggCBXmPGRQLiAOVVbnapNr3dsieC0FCm5EbgM'
-    this.consumerKey = 'q2cvrXSvccruJ1gSKlHrQ'
-    this.consumerSecret = 'Xv1eQrwkImEBN1kC7Oo8bNdQ4WL6akFypwjdENlt5iA'
-
-  },
   methods: {
     go() {
       this.$router[this.type === 'callback' ? 'replace' : 'go']('/authorize')
