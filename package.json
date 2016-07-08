@@ -8,7 +8,7 @@
     "lint": "eslint *.js **/*.js",
     "debug": "NODE_ENV=development npm start",
     "start": "node .",
-    "build": "webpack"
+    "build": "webpack -p"
   },
   "private": true,
   "keywords": [],
