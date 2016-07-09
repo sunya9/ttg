@@ -7,7 +7,7 @@ app.keys = require('./config/keys')
 app.use(session(app))
 require('./lib/routes')(app)
 
-if(process.env.NODE_ENV === 'development') {
+if(process.env.NODE_ENV !== 'production') {
   const webpack = require('webpack')
   const webpackMiddleware = require('koa-webpack-dev-middleware')
   const config = require('./webpack.config')
