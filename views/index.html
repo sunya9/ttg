@@ -16,6 +16,11 @@
       <li v-show="type === 'pin'":class="isCurrent('authorize')"><a v-link="'/authorize'">PIN入力</a></li>
       <li :class="isCurrent('authorized')"><a v-link="'/authorized'">認証完了</a></li>
     </ol>
+    <input type="hidden" v-model="consumerKey" value="<%= consumerKey %>">
+    <input type="hidden" v-model="consumerSecret" value="<%= consumerSecret %>">
+    <input type="hidden" v-model="accessToken" value="<%= accessToken %>">
+    <input type="hidden" v-model="accessTokenSecret" value="<%= accessTokenSecret %>">
+    <input type="hidden" v-model="type" value="<%= accessToken && accessTokenSecret ? 'callback' : 'pin' %>">
     <router-view :consumer-key.sync="consumerKey" :consumer-secret.sync="consumerSecret" :access-token.sync="accessToken" :access-token-secret.sync="accessTokenSecret" :type.sync="type"></router-view>
     <hr>
     <p>Pesented by <a href="https://unsweets.net">&lt;unsweets/&gt;</a></p>
