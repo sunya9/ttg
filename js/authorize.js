@@ -68,7 +68,7 @@ module.exports = Vue.extend({
       this.showForm = true
     },
     submit() {
-      this.promise = fetch(`/get?oauth_verifier=${this.pin}`, {
+      this.promise = fetch(`/?oauth_verifier=${this.pin}`, {
         credentials: 'include',
         headers: {
           'X-Requested-With': 'fetch'

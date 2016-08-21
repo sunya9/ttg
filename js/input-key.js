@@ -11,7 +11,7 @@ const template = `
     </div>
     <div>
       <label>認証タイプ:</label>
-      <input type="radio" value="pin" v-model="type" id="type-pin" checked><label class="label-inline" for="type-pin">PIN</label>
+      <input type="radio" value="pin" v-model="type" id="type-pin"><label class="label-inline" for="type-pin">PIN</label>
       <input type="radio" value="callback" v-model="type" id="type-callback"><label class="label-inline" for="type-callback">Callback</label>
     </div>
     <input type="submit" :value="buttonText" :disabled="!(consumerKey && consumerSecret && type)">
