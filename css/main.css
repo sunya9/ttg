@@ -2,6 +2,7 @@
 
 @import 'milligram-cssnext';
 
+
 :root {
   --font-family: Arial, 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'Yu gothic', 游ゴシック, メイリオ, Meiryo, sans-serif;
   --color-primary: #2980b9;
@@ -11,43 +12,50 @@
 body {
   font-family: var(--font-family);
   font-weight: normal;
-  background-color: #f8f8f8;
+  /* Background pattern from subtlepatterns.com */
+  background: url(../img/asanoha-400px.png);
 }
 
-a {
-  color: var(--color-primary);
-  &:hover {
-    color: color(var(--primary-color) l(+5%));
-  }
-}
-
-hr {
-  border-top-width: 1px;
-  border-bottom-width: 1px;
+input[type='text'] {
+  background: #fff;
 }
 
 .progress {
+  display: flex;
+
   & > li {
-    border-bottom: 1px solid var(--primary-color);
     color: var(--color-primary);
+    flex: 1;
+    border-bottom: 1px solid var(--color-primary);
     & ~ li {
       margin-left: 1rem;
     }
-    & > a {
-      display: block;
-    }
     &.current {
-      border-bottom-color: var(--color-accent);
       pointer-events: none;
-      &, & > a {
+      border-bottom-color: var(--color-accent);
+      position: relative;
+      &::after {
+        content: '';
+        width: 10px;
+        height: 10px;
+        position: absolute;
+        right: 0;
+        bottom: -10px;
+        transform-origin: right 1px;
+        border: 1px solid transparent;
+        border-top-color: inherit;
+        border-right-color: inherit;
+        transform: rotate(45deg);
+      }
+      &, & a {
         color: var(--color-accent);
       }
+      
     }
     &.current ~ li {
       border-bottom-color: #999;
-      color: #999;
-      pointer-events: none;
-      & > a {
+      &, & a {
+        pointer-events: none;
         color: #999;
       }
     }
