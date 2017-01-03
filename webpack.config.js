@@ -3,7 +3,7 @@ const path = require('path')
 const config = {
   entry: './js/main',
   output: {
-    path: path.join(__dirname, 'build'),
+    path: path.join(__dirname, 'public'),
     publicPath: '/',
     filename: 'js/main.js'
   },
@@ -11,7 +11,7 @@ const config = {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel',
+      loader: 'babel'
     }, {
       test: /\.css$/,
       loaders: ['style', 'css', 'postcss']
@@ -22,8 +22,8 @@ const config = {
   },
   postcss() {
     return [
-      require('postcss-import'),
-      require('postcss-cssnext')
+      require('postcss-import')(),
+      require('postcss-cssnext')()
     ]
   }
 }
