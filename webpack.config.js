@@ -1,40 +1,34 @@
 const path = require('path')
-const extractTextPlugin = require('extract-text-webpack-plugin')
-const autoprefixer = require('autoprefixer')
-
-const extractCSS = new extractTextPlugin('css/main.css')
 
 const config = {
-  entry: {
-    'js/main.js': './js/main.js',
-    'css/main.css': './scss/main.scss'
-  },
+  entry: './js/main',
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'build'),
     publicPath: '/',
-    filename: '[name]'
+    filename: 'js/main.js'
   },
-  plugins: [
-    extractCSS
-  ],
-  devtool: 'source-map',
   module: {
     loaders: [{
       test: /\.js$/,
       exclude: /node_modules/,
       loader: 'babel',
     }, {
-      test: /\.scss$/,
-      exclude: /node_modules/,
-      loader: extractCSS.extract(['css', 'postcss', 'sass?sourceMap'])
+      test: /\.css$/,
+      loaders: ['style', 'css', 'postcss']
     }, {
       test: /\.(jpe?g|png|gif|svg)$/i,
       loaders: ['url']
     }]
   },
   postcss() {
-    return [autoprefixer]
+    return [
+      require('postcss-import'),
+      require('postcss-cssnext')
+    ]
   }
 }
 
+if(process.env.NODE_ENV !== 'production') {
+  config.devtool = 'source-map'
+}
 module.exports = config
