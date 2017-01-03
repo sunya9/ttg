@@ -30,7 +30,7 @@ const template = `
 </div>
 `
 
-module.exports = Vue.extend({
+export default Vue.extend({
   mixins: [mixin],
   template,
   data() {

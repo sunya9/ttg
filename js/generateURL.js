@@ -3,7 +3,7 @@ promise.polyfill()
 import 'isomorphic-fetch'
 import qs from 'querystring'
 
-function generateURL(consumer_key, consumer_secret, type) {
+export function generateURL(consumer_key, consumer_secret, type) {
   const params = {
     consumer_key,
     consumer_secret,
@@ -27,5 +27,3 @@ function setCookie(res) {
   res.headers.getAll('Set-Cookie').forEach(cookie => document.cookie = cookie)
   return res
 }
-
-exports.generateURL = generateURL

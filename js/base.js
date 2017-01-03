@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   props: ['consumerKey', 'consumerSecret', 'accessToken', 'accessTokenSecret', 'type'],
 
   methods: {

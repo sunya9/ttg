@@ -12,7 +12,7 @@ const template = `
 
 const checkKeys = ['consumerKey', 'consumerSecret', 'accessToken', 'accessTokenSecret']
 
-module.exports = Vue.extend({
+export default Vue.extend({
   mixins: [mixin],
   template,
   created() {
