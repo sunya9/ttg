@@ -33,7 +33,8 @@ if(process.env.NODE_ENV !== 'production') {
       colors: true
     }
   }))
-
+} else {
+  app.use(serve(path.join(__dirname, 'public')))
 }
 
 app.listen(process.env.PORT || 3000)
