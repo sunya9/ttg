@@ -8,7 +8,7 @@
     "lint": "eslint *.js **/*.js",
     "debug": "node-dev .",
     "start": "pm2 start . --watch",
-    "build": "webpack -p"
+    "build": "webpack -p && cp public/* build/"
   },
   "private": true,
   "keywords": [],
@@ -21,16 +21,15 @@
     "koa-route": "^2.4.2",
     "koa-session": "^3.3.1",
     "koa-static": "^2.0.0",
-    "milligram-scss": "^1.0.0",
+    "milligram-cssnext": "^1.0.1",
     "oauth": "^0.9.14",
-    "pm2": "^1.1.3",
+    "postcss-cssnext": "^2.9.0",
+    "postcss-import": "^9.0.0",
     "twitter": "^1.3.0",
     "vue": "^1.0.26",
     "vue-router": "^0.7.13"
   },
   "devDependencies": {
-    "autoprefixer": "^6.3.7",
-    "babel": "^6.5.2",
     "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
     "babel-preset-es2015": "^6.9.0",
@@ -38,14 +37,8 @@
     "eslint": "^2.13.1",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.10.2",
-    "eslint-plugin-jsx-a11y": "^1.5.5",
-    "eslint-plugin-react": "^5.2.2",
-    "extract-text-webpack-plugin": "^1.0.1",
-    "file-loader": "^0.9.0",
     "koa-webpack-dev-middleware": "^1.2.1",
-    "node-sass": "^3.8.0",
     "postcss-loader": "^0.9.1",
-    "sass-loader": "^4.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.1"

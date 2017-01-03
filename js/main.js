@@ -5,6 +5,7 @@ import InputKey from './input-key'
 import Authorize from './authorize'
 import Authorized from './authorized'
 import ring from '../img/ring.gif'
+import '../css/main.css'
 
 Vue.use(VueRouter)
 
