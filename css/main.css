@@ -1,0 +1,62 @@
+@charset 'utf-8';
+
+@import 'milligram-cssnext';
+
+:root {
+  --font-family: Arial, 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'Yu gothic', 游ゴシック, メイリオ, Meiryo, sans-serif;
+  --color-primary: #2980b9;
+  --color-accent: #e74c3c;
+}
+
+body {
+  font-family: var(--font-family);
+  font-weight: normal;
+  background-color: #f8f8f8;
+}
+
+a {
+  color: var(--color-primary);
+  &:hover {
+    color: color(var(--primary-color) l(+5%));
+  }
+}
+
+hr {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+}
+
+.progress {
+  & > li {
+    border-bottom: 1px solid var(--primary-color);
+    color: var(--color-primary);
+    & ~ li {
+      margin-left: 1rem;
+    }
+    & > a {
+      display: block;
+    }
+    &.current {
+      border-bottom-color: var(--color-accent);
+      pointer-events: none;
+      &, & > a {
+        color: var(--color-accent);
+      }
+    }
+    &.current ~ li {
+      border-bottom-color: #999;
+      color: #999;
+      pointer-events: none;
+      & > a {
+        color: #999;
+      }
+    }
+  }
+}
+
+.spinner {
+  display: inline-block;
+  &:matches(img, span) {
+    vertical-align: middle;
+  }
+}
