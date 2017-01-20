@@ -36,8 +36,12 @@ const App = Vue.extend({
       consumerSecret: null,
       accessToken: null,
       accessTokenSecret: null,
-      type: null
+      type: null,
+      loaded: false
     }
+  },
+  ready() {
+    this.loaded = true
   },
   methods: {
     isCurrent(name) {
