@@ -5,14 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    // consumerKey: null,
-    // consumerSecret: null,
-    consumerKey: '1sUHbjkShqIdQXixuZNppocOQ',
-    consumerSecret: 'fjejY8y2YaycOBowM4xhotpGvTo1clxfTjtBy7GTvCrmX1MTqG',
-    type: 'callback',
+    consumerKey: null,
+    consumerSecret: null,
+    type: null,
     accessToken: null,
     accessTokenSecret: null,
-    // type: null,
     loaded: false
   },
   mutations: {
