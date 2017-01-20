@@ -20,6 +20,11 @@ const config = {
       loaders: ['url']
     }]
   },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.common.js'
+    }
+  },
   postcss() {
     return [
       require('postcss-import')(),
