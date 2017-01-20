@@ -31,7 +31,7 @@ export default {
   },
   computed: {
     disableButton() {
-      return !/^\d{7}$/.test(this.pin) || this.promise
+      return !/^\d{7}$/.test(this.pin) || this.processing
     }
   },
   mounted() {
