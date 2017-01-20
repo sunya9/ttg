@@ -20,6 +20,10 @@ input[type='text'] {
   background: #fff;
 }
 
+.container {
+  max-width: 96rem;
+}
+
 .progress {
   display: flex;
 
