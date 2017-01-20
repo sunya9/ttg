@@ -16,8 +16,6 @@ const vm = new Vue({
   el: '#app',
   router,
   store,
-  // data: {
-  // },
   mounted() {
     this.$store.commit('loaded')
   },
