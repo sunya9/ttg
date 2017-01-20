@@ -84,7 +84,6 @@
       accessToken,
       accessTokenSecret
     };
-    console.log(entries)
     Object.keys(entries).forEach(key => { %>
     <% if(entries[key]) { %>
       vm.$store.commit('updateValue', {
