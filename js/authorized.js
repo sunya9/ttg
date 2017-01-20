@@ -1,5 +1,6 @@
-import Vue from 'vue'
-import mixin from './base'
+// import Vue from 'vue'
+// import mixin from './base'
+import { mapState } from 'vuex'
 
 const template = `
   <div>
@@ -10,22 +11,26 @@ const template = `
   </div>
 `
 
-const checkKeys = ['consumerKey', 'consumerSecret', 'accessToken', 'accessTokenSecret']
+const keys = ['consumerKey', 'consumerSecret', 'accessToken', 'accessTokenSecret']
 
-export default Vue.extend({
-  mixins: [mixin],
+export default {
+  // mixins: [mixin],
   template,
-  created() {
-    if(checkKeys.every(key => this.$route.query[key])) {
-      const { consumerKey, consumerSecret, accessToken, accessTokenSecret } = this.$route.query
-      this.consumerKey = consumerKey
-      this.consumerSecret = consumerSecret
-      this.accessToken = accessToken
-      this.accessTokenSecret = accessTokenSecret
+  computed: mapState(keys.reduce((obj, key) => {
+    obj[key] = state => state[key]
+    return obj
+  }, {})),
+  mounted() {
+    // if(checkKeys.every(key => this.$route.query[key])) {
+      // const { consumerKey, consumerSecret, accessToken, accessTokenSecret } = this.$route.query
+      // this.consumerKey = consumerKey
+      // this.consumerSecret = consumerSecret
+      // this.accessToken = accessToken
+      // this.accessTokenSecret = accessTokenSecret
       this.type = 'callback'
-      this.$parent.isCurrent('/authorized')
-    }
-    if(!this.checkKey() || !this.checkToken()) return
+      // this.$parent.isCurrent('/authorized')
+    // }
+    // if(!this.checkKey() || !this.checkToken()) return
   },
   methods: {
     selectAll(e) {
@@ -35,4 +40,4 @@ export default Vue.extend({
       return this.accessToken && this.accessTokenSecret
     }
   }
-})
+}

@@ -1,53 +1,31 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
+import { sync } from 'vuex-router-sync'
+import 'isomorphic-fetch'
 
-import InputKey from './input-key'
-import Authorize from './authorize'
-import Authorized from './authorized'
-import ring from '../img/ring.gif'
+import './progress'
+import './steps'
+
+import store from './store'
+import router from './router'
+
 import '../css/main.css'
 
-Vue.use(VueRouter)
+sync(store, router)
 
-Vue.partial('progress', `<span class="spinner"><img src="${ring}" width="20" height="20" alt="" /> <span>処理中です…。</span></span>`)
-
-const router = new VueRouter().map({
-    '/input-key': {
-      component: InputKey,
-      name: 'input-key'
-    },
-    '/authorize': {
-      component: Authorize,
-      name: 'authorize'
-    },
-    '/authorized': {
-      component: Authorized,
-      name: 'authorized'
-    }
-  }).redirect({
-    '/': '/input-key',
-    '*': '/'
-  })
-
-const App = Vue.extend({
-  data() {
-    return {
-      consumerKey: null,
-      consumerSecret: null,
-      accessToken: null,
-      accessTokenSecret: null,
-      type: null,
-      loaded: false
-    }
+const vm = new Vue({
+  el: '#app',
+  router,
+  store,
+  // data: {
+  // },
+  mounted() {
+    this.$store.commit('loaded')
   },
-  ready() {
-    this.loaded = true
-  },
-  methods: {
-    isCurrent(name) {
-      return this.$route.name === name ? 'current' : ''
+  computed: {
+    loaded() {
+      return this.$store.state.loaded
     }
   }
 })
 
-router.start(App, '#app')
+window.vm = vm
