@@ -1,13 +1,6 @@
 export default {
-  props: ['consumerKey', 'consumerSecret', 'accessToken', 'accessTokenSecret', 'type'],
-
-  methods: {
-    checkKey() {
-      const res = this.consumerKey && this.consumerSecret
-      if(!res) {
-        this.$router.replace('/')
-      }
-      return res
-    }
+  created() {
+    const goTop = !this.$store.state.consumerKey || !this.$store.state.consumerSecret || !this.$store.state.type
+    if(goTop) this.$router.replace('/')
   }
 }
