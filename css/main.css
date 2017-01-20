@@ -18,6 +18,8 @@ body {
 
 input[type='text'] {
   background: #fff;
+  width: auto;
+  max-width: 100%;
 }
 
 .container {
