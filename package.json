@@ -6,10 +6,9 @@
   "scripts": {
     "test": "npm run lint",
     "lint": "eslint *.js **/*.js",
-    "debug": "node-dev .",
+    "dev": "node-dev .",
     "start": "node .",
-    "build": "webpack -p",
-    "dev": "nuxt"
+    "build": "nuxt build"
   },
   "private": true,
   "keywords": [],
@@ -20,33 +19,14 @@
     "express": "^4.14.0",
     "express-session": "^1.14.2",
     "isomorphic-fetch": "^2.2.1",
-    "koa": "^1.2.0",
-    "koa-connect": "^2.0.0",
-    "koa-ejs": "^3.0.0",
-    "koa-route": "^2.4.2",
-    "koa-session": "^3.3.1",
-    "koa-static": "^2.0.0",
     "milligram-cssnext": "^1.0.1",
     "nuxt": "^0.9.6",
     "oauth": "^0.9.14",
     "postcss-cssnext": "^2.9.0",
     "postcss-import": "^9.0.0",
-    "twitter": "^1.3.0",
-    "vue": "^2.1.10",
-    "vue-router": "^2.1.3",
-    "vuex": "^2.1.1",
-    "vuex-router-sync": "^4.1.1"
+    "twitter": "^1.3.0"
   },
   "devDependencies": {
-    "babel-core": "^6.10.4",
-    "babel-loader": "^6.2.4",
-    "babel-preset-es2015": "^6.9.0",
-    "css-loader": "^0.23.1",
-    "eslint": "^2.13.1",
-    "koa-webpack-dev-middleware": "^1.2.1",
-    "postcss-loader": "^0.9.1",
-    "style-loader": "^0.13.1",
-    "url-loader": "^0.5.7",
-    "webpack": "^1.13.1"
+    "eslint": "^2.13.1"
   }
 }
