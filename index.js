@@ -23,12 +23,20 @@ function error(err, req, res) {
   }
 }
 
-const nuxt = new Nuxt(require('./nuxt.config'))
-nuxt.build()
-  .then(() => {
-    app.use(nuxt.render)
+const isProd = process.env.NODE_ENV === 'production'
+const config = require('./nuxt.config')
+config.dev = !isProd
+const nuxt = new Nuxt(config)
+const promise = isProd ? Promise.resolve() : nuxt.build()
+promise.then(() => {
+  app.use(nuxt.render)
+  if(!isProd)
     app.use(error)
-    app.listen(port)
-  })
+  app.listen(port)
+})
+.catch((error) => {
+  console.error(error)
+  process.exit(1)
+})
 
 console.log(`Server running at http://localhost:${port}/`)
