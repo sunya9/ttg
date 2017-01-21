@@ -9,15 +9,14 @@ export default new Vuex.Store({
     consumerSecret: null,
     type: null,
     accessToken: null,
-    accessTokenSecret: null,
-    loaded: false
+    accessTokenSecret: null
   },
   mutations: {
-    loaded(state) {
-      state.loaded = true
-    },
     updateValue(state, { name, value }) {
       state[name] = value
+    },
+    changeType(state, type) {
+      state.type = type
     }
   }
 })

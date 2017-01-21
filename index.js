@@ -1,41 +1,34 @@
 /* eslint no-console: 0 */
 
-const Koa = require('koa')
-const serve = require('koa-static')
-const session = require('koa-session')
-const render = require('koa-ejs')
-const path = require('path')
+const express = require('express')
+const session = require('express-session')
 
-const app = new Koa()
-app.keys = require('./config/keys')
-app.use(session(app))
-render(app, {
-  root: path.join(__dirname, 'views'),
-  layout: false,
-  cache: false,
-  debug: process.env.NODE_ENV !== 'production'
-})
-require('./lib/routes')(app)
+const Nuxt = require('nuxt')
 
+const app = express()
 const port = process.env.PORT || 3000
 
-if(process.env.NODE_ENV !== 'production') {
-  const webpack = require('webpack')
-  const webpackMiddleware = require('koa-webpack-dev-middleware')
-  const config = require('./webpack.config')
-  const compiled = webpack(config)
-  app.use(webpackMiddleware(compiled, {
-    lazy: true,
-    quiet: false,
-    noInfo: true,
-    publicPath: '/',
-    stats: {
-      colors: true
-    }
-  }))
-} else {
-  app.use(serve(path.join(__dirname, 'public')))
+app.use(session({
+  secret: require('./config/keys').toString(),
+  resave: false,
+  saveUninitialized: false
+}))
+
+app.get('/token', require('./lib/token'))
+app.get('/get', require('./lib/get'))
+
+function error(err, req, res) {
+  if(process.env.NODE_ENV !== 'production') {
+    res.status(500).send(JSON.stringify(err))
+  }
 }
 
-app.listen(process.env.PORT || 3000)
+const nuxt = new Nuxt(require('./nuxt.config'))
+nuxt.build()
+  .then(() => {
+    app.use(nuxt.render)
+    app.use(error)
+    app.listen(port)
+  })
+
 console.log(`Server running at http://localhost:${port}/`)

@@ -8,7 +8,8 @@
     "lint": "eslint *.js **/*.js",
     "debug": "node-dev .",
     "start": "node .",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "dev": "nuxt"
   },
   "private": true,
   "keywords": [],
@@ -16,13 +17,17 @@
   "license": "MIT",
   "dependencies": {
     "es6-promise": "^3.2.1",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
     "isomorphic-fetch": "^2.2.1",
     "koa": "^1.2.0",
+    "koa-connect": "^2.0.0",
     "koa-ejs": "^3.0.0",
     "koa-route": "^2.4.2",
     "koa-session": "^3.3.1",
     "koa-static": "^2.0.0",
     "milligram-cssnext": "^1.0.1",
+    "nuxt": "^0.9.6",
     "oauth": "^0.9.14",
     "postcss-cssnext": "^2.9.0",
     "postcss-import": "^9.0.0",
