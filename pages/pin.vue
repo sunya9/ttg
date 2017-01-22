@@ -6,7 +6,7 @@
       <input type="submit" value="トークンを取得" :disabled="disableButton">
     </div>
     <p v-show="error">
-      エラーが発生しました。<router-link to="/">1.に戻って</a>Consumer Key, Consumer Secret, 認証タイプを確認してください。
+      エラーが発生しました。<nuxt-link to="/">1.に戻って</a>Consumer Key, Consumer Secret, 認証タイプを確認してください。
     </p>
   </form>
 </template>
@@ -26,17 +26,15 @@ export default {
       pin: null
     }
   },
-  fetch({store, isClient}) {
+  fetch({ store, redirect, store: { state }}) {
     store.commit('changeType', 'pin')
+    const goHome = !state.consumerKey || !state.consumerSecret
+    if(goHome) return redirect('/')
   },
   computed: {
     disableButton() {
       return !/^\d{7}$/.test(this.pin) || this.processing
     }
-  },
-  mounted() {
-    const goHome = !this.$store.state.consumerKey || !this.$store.state.consumerSecret
-    if(goHome) this.$router.replace('/')
   },
   methods: {
     submit() {

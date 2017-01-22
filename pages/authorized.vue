@@ -18,29 +18,23 @@ import promise from 'es6-promise'
 promise.polyfill()
 
 
-const keys = ['consumerKey', 'consumerSecret', 'accessToken', 'accessTokenSecret', 'type']
+const keys = ['consumerKey', 'consumerSecret', 'accessToken', 'accessTokenSecret']
 export default {
   computed: mapState(keys.reduce((obj, key) => {
     obj[key] = state => state[key]
     return obj
   }, {})),
-  mounted() {
-    const goHome = !keys.every(key => this[key])
-    if(goHome) this.$router.replace('/')
-  },
-  fetch({isServer, req, store}) {
-    const data = isServer
-      ? req.session
-      : keys.reduce((memo, key) => {
-        memo[key] = store.state[key]
-        return memo
-      }, {})
-    keys.forEach(name => {
-      store.commit('updateValue', {
-        name,
-        value: data[name]
+  fetch({ isServer, req, store, redirect }) {
+    if(isServer && req.session) {
+      keys.forEach(name => {
+        store.commit('updateValue', {
+          name,
+          value: req.session[name]
+        })
       })
-    })
+    }
+    const goHome = !keys.every(key => store.state[key])
+    if(goHome) redirect('/')
   },
   methods: {
     selectAll(e) {
