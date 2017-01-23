@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import express from 'express'
 import session from 'express-session'
 
+
 let nuxt, server, app
 const root = resolve(__dirname, '..')
 
@@ -26,11 +27,6 @@ test.before('Init Nuxt.js', async () => {
   await nuxt.build()
   app.use(nuxt.render)
   server = app.listen(4000)
-})
-
-test('Redirect to home when ck/cs are empty in /pin', async t => {
-  const { redirected } = await nuxt.renderRoute('/pin')
-  t.is(redirected.path, '/')
 })
 
 test('Redirect to home when ck/cs and at/ats are empty in /authorized', async t => {
