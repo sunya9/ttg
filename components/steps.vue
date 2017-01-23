@@ -1,49 +1,22 @@
 <template>
   <ol>
     <li :class="isCurrent('index')"><router-link to="/">CK/CS入力</a></li>
-    <transition name="close">
-      <li v-if="show" :class="[isCurrent('pin'), {
-        disabled: this.$route.name === 'authorized'
-      }]"><router-link to="/pin">PIN入力</a></li>
-    </transition>
     <li :class="isCurrent('authorized')"><router-link to="/authorized">認証完了</a></li>
   </ol>
 </template>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
-  computed: mapState({
-    show: state => state.type === 'pin',
-  }),
   methods: {
     isCurrent(name) {
       return this.$route.name === name ? 'current' : ''
-    },
+    }
   }
 }
 </script>
 
 <style scoped>
 @import '../assets/css/variables.css';
-
-
-.close-enter-active, .close-leave-active {
-  transition: all .5s ease;
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.close-leave, .close-enter-to {
-  opacity: 1;
-  max-width: 100%;
-}
-
-.close-leave-to, .close-enter {
-  max-width: 0;
-  opacity: 0;
-}
 
 ol {
   display: flex;
@@ -77,7 +50,7 @@ ol {
       }
       
     }
-    &.current ~ li, &.disabled {
+    &.current ~ li {
       border-bottom-color: #999;
       &, & a {
         pointer-events: none;

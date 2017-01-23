@@ -1,20 +1,27 @@
 <template>
-  <form @submit.prevent="go">
-    <label for="ck">Consumer Key</label>
-    <input type="text" id="ck" :value="key" name="consumerKey" @input="updateValue" size="60">
+  <div>
+    <form @submit.prevent="generate">
+      <label for="ck">Consumer Key</label>
+      <input type="text" id="ck" :value="key" name="consumerKey" @input="updateValue" size="60">
 
-    <label for="cs">Consumer Secret</label>
-    <input type="text" id="cs" :value="secret" name="consumerSecret" @input="updateValue" size="60">
+      <label for="cs">Consumer Secret</label>
+      <input type="text" id="cs" :value="secret" name="consumerSecret" @input="updateValue" size="60">
 
-    <label>認証タイプ</label>
-    <label class="label-inline" for="type-pin"><input type="radio" value="pin" @change="updateType" name="type" id="type-pin" v-model="type">PIN</label>
-    <label class="label-inline" for="type-callback"><input type="radio" value="callback" @change="updateType" name="type" id="type-callback"  v-model="type">Callback</label>
+      <label>認証タイプ</label>
+      <label class="label-inline" for="type-pin"><input type="radio" value="pin" @change="updateType" name="type" id="type-pin" v-model="type">PIN</label>
+      <label class="label-inline" for="type-callback"><input type="radio" value="callback" @change="updateType" name="type" id="type-callback"  v-model="type">Callback</label>
 
-    <div>
-      <input type="submit" value="認証する" :disabled="(!key || !secret || !type)">
-    </div>
+      <div>
+        <input type="submit" value="認証する" :disabled="(!key || !secret || !type)">
+      </div>
+    </form>
+    <form v-show="showPIN" @submit.prevent="submitPIN">
+      <label for="pin" class="label-inline">PIN</label>&nbsp;
+      <input type="text" v-model="pin" required maxlength="7" pattern="^\d{7}$" id="pin" style="width: auto">&nbsp;
+      <input type="submit" value="トークンを取得" :disabled="disabledSubmitPINButton">
+    </form>
     <p v-if="error">{{error.message}}</p>
-  </form>
+  </div>
 </template>
 
 <script>
@@ -24,16 +31,27 @@ import { generateURL } from '../lib/generateURL'
 export default {
   data() {
     return {
-      error: null
+      error: null,
+      showPIN: false,
+      processing: false,
+      pin: null
     }
   },
-  computed: mapState({
-    key: state => state.consumerKey,
-    secret: state => state.consumerSecret,
-    type: state => state.type,
-  }),
+  computed: {
+    disabledGenerateButton() {
+      return !this.key || !this.secret || !this.type
+    },
+    disabledSubmitPINButton() {
+      return !/^\d{7}$/.test(this.pin) || this.processing
+    },
+    ...mapState({
+      key: state => state.consumerKey,
+      secret: state => state.consumerSecret,
+      type: state => state.type,
+    })
+  },
   methods: {
-    go() {
+    generate() {
       this.error = null
       let wnd
       if(this.type === 'pin')
@@ -44,7 +62,7 @@ export default {
             location.href = url
           } else {
             wnd.location.href = url
-            this.$router.push('/pin')              
+            this.showPIN = true
           }
         })
         .catch(err => this.error = err)
@@ -58,6 +76,37 @@ export default {
         name,
         value
       })
+    },
+    submitPIN() {
+      this.processing = true
+      this.promise = fetch(`/get?oauth_verifier=${this.pin}`, {
+        credentials: 'include',
+        headers: {
+          'X-Requested-With': 'fetch'
+        }
+      })
+        .then(res => {
+          if(!res.ok) throw Error(res.responseText)
+          return res
+        })
+        .then(body => body.json())
+        .then(data => {
+          const {
+            accessToken,
+            accessTokenSecret
+          } = data
+          this.$store.commit('updateValue', {
+            name: 'accessToken',
+            value: accessToken
+          })
+          this.$store.commit('updateValue', {
+            name: 'accessTokenSecret',
+            value: accessTokenSecret
+          })
+          this.processing = false
+          this.$router.push('/authorized')
+        })
+        .catch(err => this.error = err)
     }
   }
 }
