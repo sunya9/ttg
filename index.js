@@ -7,9 +7,12 @@ const Nuxt = require('nuxt')
 
 const app = express()
 const port = process.env.PORT || 3000
+const isProd = process.env.NODE_ENV === 'production'
+
+
 
 app.use(session({
-  secret: require('./config/keys').toString(),
+  secret: isProd ? require('./config/keys').toString() : 'ttg',
   resave: false,
   saveUninitialized: false
 }))
@@ -23,7 +26,6 @@ function error(err, req, res) {
   }
 }
 
-const isProd = process.env.NODE_ENV === 'production'
 const config = require('./nuxt.config')
 config.dev = !isProd
 const nuxt = new Nuxt(config)
