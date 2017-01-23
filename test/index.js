@@ -55,7 +55,7 @@ test('Not redirect when ck/cs and at/ats are exists in /authorized', async t => 
 
 
 // Close server and ask nuxt to stop listening to file changes
-test.after('Closing server and nuxt.js', t => {
+test.after('Closing server and nuxt.js', () => {
   server.close()
   nuxt.close()
 })
