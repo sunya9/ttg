@@ -12,7 +12,7 @@ test.before('Init Nuxt.js', async () => {
   app = express()
   
   app.use(session({
-    secret: require(resolve(root, 'config/keys')).toString(),
+    secret: 'ttg',
     resave: false,
     saveUninitialized: false
   }))
