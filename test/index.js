@@ -4,7 +4,7 @@ import { resolve } from 'path'
 import express from 'express'
 import session from 'express-session'
 
-let nuxt, server, app;
+let nuxt, server, app
 const root = resolve(__dirname, '..')
 
 // Init Nuxt.js and create a server listening on localhost:4000
