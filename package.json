@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "ava": "^0.17.0",
-    "eslint": "^2.13.1",
+    "eslint": "^3.14.0",
     "jsdom": "^9.9.1"
   }
 }
