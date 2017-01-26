@@ -1,3 +1,6 @@
+const fs = require('fs')
+
+const loadingCSS = fs.readFileSync('assets/css/loading.css', 'utf-8')
 module.exports = {
   head: {
     meta: [
@@ -6,6 +9,12 @@ module.exports = {
       }, {
         name: 'viewport',
         content: 'width=device-width,initial-scale=1.0,minimum-scale=0.25'
+      }
+    ],
+    style: [
+      {
+        cssText: loadingCSS,
+        type: 'text/css'
       }
     ],
     title: 'TwiTokenGetter'

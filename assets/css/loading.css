@@ -1,0 +1,40 @@
+.loading-screen {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f0f0;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.loading {
+  animation: loading 1s linear infinite;
+  border: 5px solid #ccc;
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  border-right-color: #2980b9;
+  border-left-color: #2980b9;
+  border-radius: 100%;
+}
+.fade-out-leave-active {
+  transition: all 1s ease;
+}
+.fade-out-leave-to {
+  opacity: 0;
+  transform: scale(2);
+}
+@keyframes loading {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
