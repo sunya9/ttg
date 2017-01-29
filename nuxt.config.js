@@ -17,6 +17,12 @@ module.exports = {
         type: 'text/css'
       }
     ],
+    link: [
+      {
+        rel: 'favicon',
+        src: '/favicon.ico'
+      }
+    ],
     title: 'TwiTokenGetter'
   },
   loading: {

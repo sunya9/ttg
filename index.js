@@ -19,6 +19,7 @@ app.use(session({
 
 app.get('/token', require('./lib/token'))
 app.get('/get', require('./lib/get'))
+app.use(express.static('assets'))
 
 function error(err, req, res) {
   if(process.env.NODE_ENV !== 'production') {
