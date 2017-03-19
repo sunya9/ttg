@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run test:code && npm run test:lint",
+    "test": "npm run test:lint && npm run test:code",
     "test:code": "ava",
     "test:lint": "eslint *.js **/*.js",
     "dev": "node-dev .",
