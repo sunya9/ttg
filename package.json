@@ -30,6 +30,7 @@
   "devDependencies": {
     "ava": "^0.17.0",
     "eslint": "^3.14.0",
-    "jsdom": "^9.9.1"
+    "jsdom": "^9.9.1",
+    "node-dev": "^3.1.3"
   }
 }
