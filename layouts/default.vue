@@ -15,18 +15,6 @@
         </header>
         <main>
           <nuxt/>
-          <aside>
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- ttg -->
-            <ins class="adsbygoogle"
-                style="display:block"
-                data-ad-client="ca-pub-8533964791111838"
-                data-ad-slot="8289442048"
-                data-ad-format="auto"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-          </aside>
         </main>
         <footer>
           Presented by <a href="https://unsweets.net">&lt;unsweets/&gt;</a>
