@@ -1,7 +1,7 @@
 <template>
   <ol>
-    <li :class="isCurrent('index')"><router-link to="/">CK/CS入力</a></li>
-    <li :class="isCurrent('authorized')"><router-link to="/authorized">認証完了</a></li>
+    <li :class="isCurrent('index')"><router-link to="/">CK/CS入力</router-link></li>
+    <li :class="isCurrent('authorized')"><router-link to="/authorized">認証完了</router-link></li>
   </ol>
 </template>
 
