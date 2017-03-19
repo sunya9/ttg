@@ -20,7 +20,7 @@
       <input type="text" v-model="pin" required maxlength="7" pattern="^\d{7}$" id="pin" style="width: auto">&nbsp;
       <input type="submit" value="トークンを取得" :disabled="disabledSubmitPINButton">
     </form>
-    <p v-if="error">{{error.message}}</p>
+    <p v-if="error" class="error">{{error.message}}</p>
   </div>
 </template>
 
@@ -65,7 +65,10 @@ export default {
             this.showPIN = true
           }
         })
-        .catch(err => this.error = err)
+        .catch(err => {
+          this.error = err
+          wnd.close()
+        })
     },
     updateType({ target: { value } }) {
       this.$store.commit('changeType', value)
@@ -111,3 +114,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.error {
+  background-color: #F2A0A3;
+  line-height: 1.5;
+  padding: 1rem;
+  border: 1px solid #F28084;
+}
+</style>
