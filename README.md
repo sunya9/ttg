@@ -3,4 +3,4 @@
 
 TwitterのAccessTokenなどを任意のアカウントで取得するツール。
 
-[TwiTokenGetter](http://ttg.unsweets.net/)
+[TwiTokenGetter](https://ttg.unsweets.net/)
