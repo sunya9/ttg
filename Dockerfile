@@ -1,19 +1,18 @@
 FROM node:slim
+MAINTAINER sunya
 
 # Create app directory
-RUN mkdir -p /var/opt/ttg
-WORKDIR /var/opt/ttg
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
 
 # Install app dependencies and build
-COPY package.json /var/opt/ttg
-RUN npm set progress false && npm install
-
+COPY package.json /usr/src/app
+RUN yarn
 
 # Build
-COPY . /var/opt/ttg
-RUN npm run build && head -c1M /dev/urandom | sha1sum | awk '{print "[\""$1"\"]"}' > config/keys.json
-    
-EXPOSE 3000
-VOLUME /var/opt/ttg
+COPY . /usr/src/app
+RUN yarn run build
 
-CMD ["npm", "start"]
+EXPOSE 3000
+
+CMD ["yarn", "start"]
