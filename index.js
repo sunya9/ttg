@@ -4,13 +4,13 @@ const express = require('express')
 const session = require('express-session')
 
 const Nuxt = require('nuxt')
-
+const crypto = require('crypto')
 const app = express()
 const port = process.env.PORT || 3000
 const isProd = process.env.NODE_ENV === 'production'
 
 app.use(session({
-  secret: isProd ? require('./config/keys').toString() : 'ttg',
+  secret: crypto.randomBytes(16).toString('hex'),
   resave: false,
   saveUninitialized: false
 }))
