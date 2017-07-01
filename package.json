@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run test:lint && npm run test:code",
     "test:code": "ava",
-    "test:lint": "eslint *.js **/*.js",
+    "test:lint": "eslint .",
     "dev": "node-dev .",
     "start": "node .",
     "build": "nuxt build"
