@@ -21,7 +21,7 @@
     "express-session": "^1.14.2",
     "isomorphic-fetch": "^2.2.1",
     "milligram-cssnext": "^1.0.1",
-    "nuxt": "^0.10.5",
+    "nuxt": "^1.0.0-rc2",
     "oauth": "^0.9.14",
     "postcss-cssnext": "^2.9.0",
     "postcss-import": "^9.0.0",
