@@ -1,0 +1,30 @@
+@import 'milligram-cssnext';
+:root {
+  --font-family: Arial, 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'Yu gothic', 游ゴシック, メイリオ, Meiryo, sans-serif;
+  --color-primary: #2980b9;
+  --color-accent: #e74c3c;
+}
+
+body {
+  font-family: var(--font-family);
+  /* Background pattern from subtlepatterns.com */
+  background: url(~/assets/img/asanoha-400px.png);
+}
+
+input[type='text'] {
+  background: #fff;
+  width: auto;
+  max-width: 100%;
+}
+
+.page-enter-active,
+.page-leave-active {
+  transition: all ease .5s;
+  transform-origin: top center;
+}
+
+.page-enter,
+.page-leave-to {
+  opacity: 0;
+  transform: scaleY(0);
+}
