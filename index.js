@@ -3,7 +3,10 @@
 const express = require('express')
 const session = require('express-session')
 
-const Nuxt = require('nuxt')
+const {
+  Nuxt,
+  Builder
+} = require('nuxt')
 const crypto = require('crypto')
 const app = express()
 const port = process.env.PORT || 3000
@@ -23,19 +26,41 @@ app.use(express.static('assets'))
 const config = require('./nuxt.config')
 config.dev = !isProd
 const nuxt = new Nuxt(config)
-const promise = isProd ? Promise.resolve() : nuxt.build()
+const builder = new Builder(nuxt)
+const promise = isProd ? Promise.resolve() : builder.build()
 promise.then(() => {
-  app.use(nuxt.render)
-  app.listen(port)
-  app.use((err, req, res, next) => {
-    if(!err) next()
-    const { statusCode = 500 } = err
-    res.status(statusCode).send(JSON.stringify(err))
+    app.use(nuxt.render)
+    app.use((err, req, res, next) => {
+      if (!err) next()
+      if (err instanceof Error) {
+        // server error
+        res.status(500).json({
+          statusCode: 500,
+          message: err.message
+        })
+
+      } else {
+        // twitter's error
+        const {
+          statusCode = 500,
+            data
+        } = err
+        const {
+          errors: [error]
+        } = JSON.parse(data)
+        res.status(statusCode).json({
+          statusCode,
+          message: error.message
+        })
+        console.error(err)
+
+      }
+    })
+    app.listen(port)
   })
-})
-.catch((error) => {
-  console.error(error)
-  process.exit(1)
-})
+  .catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })
 
 console.log(`Server running at http://localhost:${port}/`)
