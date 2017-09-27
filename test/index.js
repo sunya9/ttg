@@ -1,6 +1,11 @@
 import test from 'ava'
-import Nuxt from 'nuxt'
-import { resolve } from 'path'
+import {
+  Nuxt,
+  Builder
+} from 'nuxt'
+import {
+  resolve
+} from 'path'
 import express from 'express'
 import session from 'express-session'
 
@@ -9,9 +14,9 @@ let nuxt, server, app
 const root = resolve(__dirname, '..')
 
 // Init Nuxt.js and create a server listening on localhost:4000
-test.before('Init Nuxt.js', async () => {
+test.before('Init Nuxt.js', async() => {
   app = express()
-  
+
   app.use(session({
     secret: 'ttg',
     resave: false,
@@ -23,8 +28,8 @@ test.before('Init Nuxt.js', async () => {
 
   const config = require(resolve(root, './nuxt.config'))
   config.dev = false
-   nuxt = new Nuxt(config)
-  await nuxt.build()
+  nuxt = new Nuxt(config)
+  await new Builder(nuxt).build()
   app.use(nuxt.render)
   server = app.listen(4000)
 })
@@ -45,7 +50,9 @@ test('Not redirect when ck/cs and at/ats are exists in /authorized', async t => 
       accessTokenSecret: 'qux'
     }
   }
-  const res = await nuxt.renderRoute('/authorized', { req })
+  const res = await nuxt.renderRoute('/authorized', {
+    req
+  })
   t.false(res.redirected)
 })
 
