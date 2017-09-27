@@ -8,8 +8,8 @@
       <input type="text" id="cs" :value="secret" name="consumerSecret" @input="updateValue" size="60">
 
       <label>認証タイプ</label>
-      <label class="label-inline" for="type-pin"><input type="radio" value="pin" @change="updateType" name="type" id="type-pin" v-model="type">PIN</label>
-      <label class="label-inline" for="type-callback"><input type="radio" value="callback" @change="updateType" name="type" id="type-callback"  v-model="type">Callback</label>
+      <label class="label-inline" for="type-pin"><input type="radio" value="pin" name="type" id="type-pin" v-model="type">PIN</label>
+      <label class="label-inline" for="type-callback"><input type="radio" value="callback" name="type" id="type-callback" v-model="type">Callback</label>
 
       <div>
         <input type="submit" value="認証する" :disabled="(!key || !secret || !type)">
@@ -47,18 +47,25 @@ export default {
     ...mapState({
       key: state => state.consumerKey,
       secret: state => state.consumerSecret,
-      type: state => state.type,
-    })
+    }),
+    type: {
+      get() {
+        return this.$store.state.type
+      },
+      set(type) {
+        return this.$store.commit('changeType', type)
+      }
+    }
   },
   methods: {
     generate() {
       this.error = null
       let wnd
-      if(this.type === 'pin')
+      if (this.type === 'pin')
         wnd = window.open('', 'ttg', 'resizable=yes,scrollbars=yes')
       generateURL(this.key, this.secret, this.type)
         .then(url => {
-          if(this.type === 'callback') {
+          if (this.type === 'callback') {
             location.href = url
           } else {
             wnd.location.href = url
@@ -66,15 +73,18 @@ export default {
           }
         })
         .catch(err => {
+          console.error(err)
           this.error = err
-          wnd.close()
+          if (wnd) {
+            wnd.close()
+          }
         })
     },
     updateType({ target: { value } }) {
       this.$store.commit('changeType', value)
     },
     updateValue(e) {
-      const {target: {name, value}} = e
+      const { target: { name, value } } = e
       this.$store.commit('updateValue', {
         name,
         value
@@ -89,7 +99,7 @@ export default {
         }
       })
         .then(res => {
-          if(!res.ok) throw Error(res.responseText)
+          if (!res.ok) throw new Error(res.responseText)
           return res
         })
         .then(body => body.json())

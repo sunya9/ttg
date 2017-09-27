@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export default () => new Vuex.Store({
   state: {
     consumerKey: null,
     consumerSecret: null,
@@ -12,7 +12,10 @@ export default new Vuex.Store({
     accessTokenSecret: null
   },
   mutations: {
-    updateValue(state, { name, value }) {
+    updateValue(state, {
+      name,
+      value
+    }) {
       state[name] = value
     },
     changeType(state, type) {
