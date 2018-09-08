@@ -22,7 +22,7 @@
     "isomorphic-fetch": "2.2.1",
     "milligram-cssnext": "1.0.1",
     "nuxt": "1.0.0-rc11",
-    "oauth": "0.9.14",
+    "oauth": "0.9.15",
     "twitter": "1.7.1"
   },
   "devDependencies": {
