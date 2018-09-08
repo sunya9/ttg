@@ -23,7 +23,7 @@
     "milligram-cssnext": "1.0.1",
     "nuxt": "1.0.0-rc11",
     "oauth": "0.9.14",
-    "twitter": "1.7.0"
+    "twitter": "1.7.1"
   },
   "devDependencies": {
     "ava": "0.21.0",
