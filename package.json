@@ -21,7 +21,7 @@
     "express-session": "1.15.6",
     "isomorphic-fetch": "2.2.1",
     "milligram-cssnext": "1.0.1",
-    "nuxt": "1.0.0-rc11",
+    "nuxt": "2.6.3",
     "oauth": "0.9.15",
     "twitter": "1.7.1"
   },
