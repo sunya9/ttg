@@ -16,7 +16,7 @@
   "author": "_X_y_z_",
   "license": "MIT",
   "dependencies": {
-    "es6-promise": "4.2.5",
+    "es6-promise": "4.2.8",
     "express": "4.16.4",
     "express-session": "1.15.6",
     "isomorphic-fetch": "2.2.1",
