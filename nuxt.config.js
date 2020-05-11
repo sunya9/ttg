@@ -27,4 +27,10 @@ module.exports = {
     failedColor: '#e74c3c',
     duration: 1500
   },
+  build: {
+    extend (config, { isDev }) {
+      if(isDev) return
+      config.plugins = config.plugins.filter((plugin) => plugin.constructor.name !== 'UglifyJsPlugin')
+    }
+  },
 }
