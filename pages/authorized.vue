@@ -24,8 +24,8 @@ export default {
     obj[key] = state => state[key]
     return obj
   }, {})),
-  fetch({ isServer, req, store, redirect }) {
-    if(isServer && req.session) {
+  fetch({ req, store, redirect }) {
+    if(process.server && req.session) {
       keys.forEach(name => {
         store.commit('updateValue', {
           name,
