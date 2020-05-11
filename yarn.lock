@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@ava/babel@^1.0.1":
+"@ava/babel@1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@ava/babel/-/babel-1.0.1.tgz#9f005bc0118eee4639827df798c75b77fa5fe35d"
   integrity sha512-mGKpGeT6J4UjK2sxPjvwWl/GtsF9+eNyn2HHa7OknWWWYuw+rof/UaTAn1CA0z4sTw4Mruik/ihEasMw+JM6aQ==
