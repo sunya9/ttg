@@ -20,7 +20,7 @@ module.exports = {
     title: 'TwiTokenGetter'
   },
   css: [
-    '~/assets/css/main.css'
+    '~/assets/css/main.scss'
   ],
   loading: {
     color: '#2980b9',

@@ -15,22 +15,22 @@ export default {
 }
 </script>
 
-<style scoped>
-@import '../assets/css/variables.css';
+<style scoped lang="scss">
+@import '~assets/css/variables';
 
 ol {
   display: flex;
 
   & > li {
-    color: var(--color-primary);
+    color: $color-primary;
     flex: 1;
-    border-bottom: 1px solid var(--color-primary);
+    border-bottom: 1px solid $color-primary;
     & ~ li {
       margin-left: 1rem;
     }
     &.current {
       pointer-events: none;
-      border-bottom-color: var(--color-accent);
+      border-bottom-color: $color-accent;
       position: relative;
       &::after {
         content: '';
@@ -46,7 +46,7 @@ ol {
         transform: rotate(45deg);
       }
       &, & a {
-        color: var(--color-accent);
+        color: $color-accent;
       }
       
     }
