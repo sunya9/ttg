@@ -30,7 +30,7 @@
     "@ava/babel": "1.0.1",
     "@babel/preset-env": "7.11.0",
     "ava": "3.12.1",
-    "eslint": "7.8.0",
+    "eslint": "7.8.1",
     "jsdom": "16.4.0",
     "node-dev": "5.2.0",
     "node-sass": "4.14.1",
